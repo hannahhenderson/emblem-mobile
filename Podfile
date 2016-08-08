@@ -5,6 +5,9 @@ use_frameworks!
 
 target 'Emblem' do
   pod 'GoogleMaps'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
 end
 
 target 'EmblemTests' do
