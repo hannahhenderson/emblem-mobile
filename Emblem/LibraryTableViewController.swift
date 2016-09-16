@@ -251,13 +251,16 @@ extension LibraryTableViewController: UIImagePickerControllerDelegate, UINavigat
         let imageData = UIImagePNGRepresentation(image)!
         let url = NSURL(string: Store.serverLocation + "art/")!
         
-        let loadingScreen = Utils.genLoadingScreen(self.view.bounds.width, height: self.view.bounds.height, loadingText: "Pulsating quasi-data to the cloud....")
+        let loadingScreen = Utils.genLoadingScreen(self.view.bounds.width, height: UIScreen.mainScreen().bounds.height, loadingText: "Pulsating quasi-data to the cloud....")
 
         self.view.addSubview(loadingScreen)
         HTTPRequest.post(["image": imageData, "imageLength": imageData.length], dataType: "application/octet-stream", url: url) { (succeeded, msg) in
             if succeeded {
                 print(msg)
                 dispatch_async(dispatch_get_main_queue(), {() -> Void in
+                    let alert = UIAlertController(title: "Upload complete!", message: "Now select a piece of art from your library to post it to your location!", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "Got it!", style: .Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
                     loadingScreen.removeFromSuperview()
                     self.artData = []
                     self.getImageIdsForUser()

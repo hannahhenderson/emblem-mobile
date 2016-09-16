@@ -9,7 +9,6 @@
 import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
-import FBSDKShareKit
 import SwiftyJSON
     
 

@@ -80,32 +80,32 @@ class ARViewController: UIViewController {
         self.view.addGestureRecognizer(swipeRight)
         self.view.addGestureRecognizer(swipeDown)
       
-        if let leftImage = UIImage(named: "plus-symbol-white.png") {
+        if let leftImage = UIImage(named: "letter-x-white.png") {
             let leftButton = UIButton(type: UIButtonType.Custom)
-            leftButton.frame = CGRectMake(25, 25, 25, 25)
+            leftButton.frame = CGRectMake(25, 25, 22, 22)
             leftButton.contentMode = UIViewContentMode.ScaleAspectFit
             leftButton.setImage(leftImage, forState: .Normal)
-            leftButton.addTarget(self, action: #selector(ARViewController.handleMySwipeRightGesture(_:)), forControlEvents: .TouchUpInside)
+            leftButton.addTarget(self, action: #selector(ARViewController.back), forControlEvents: .TouchUpInside)
             self.view.addSubview(leftButton)
         }
         
         
-        if let rightImage = UIImage(named: "menu.png") {
-            let rightButton = UIButton(type: UIButtonType.Custom)
-            rightButton.frame = CGRectMake(UIScreen.mainScreen().bounds.width - 50, 25, 25, 25)
-            rightButton.contentMode = UIViewContentMode.ScaleAspectFit
-            rightButton.setImage(rightImage, forState: .Normal)
-            rightButton.addTarget(self, action: #selector(ARViewController.handleMySwipeLeftGesture(_:)), forControlEvents: .TouchUpInside)
-            self.view.addSubview(rightButton)
+        if let swapImage = UIImage(named: "swap_66.png") {
+            let swapButton = UIButton(type: UIButtonType.Custom)
+            swapButton.frame = CGRectMake(UIScreen.mainScreen().bounds.width - 50, 25, 28, 28)
+            swapButton.contentMode = UIViewContentMode.ScaleAspectFit
+            swapButton.setImage(swapImage, forState: .Normal)
+            swapButton.addTarget(self, action: #selector(ARViewController.handleMySwipeLeftGesture(_:)), forControlEvents: .TouchUpInside)
+            self.view.addSubview(swapButton)
         }
         
-        if let downImage = UIImage(named: "letter-x-white.png") {
-            let downButton = UIButton(type: UIButtonType.Custom)
-            downButton.frame = CGRectMake((UIScreen.mainScreen().bounds.width - 22) / 2, 25, 22, 22)
-            downButton.contentMode = UIViewContentMode.ScaleAspectFit
-            downButton.setImage(downImage, forState: .Normal)
-            downButton.addTarget(self, action: #selector(ARViewController.back), forControlEvents: .TouchUpInside)
-            self.view.addSubview(downButton)
+        if let libImage = UIImage(named: "open-book-white_66.png") {
+            let libButton = UIButton(type: UIButtonType.Custom)
+            libButton.frame = CGRectMake((UIScreen.mainScreen().bounds.width - 95), 25, 25, 25)
+            libButton.contentMode = UIViewContentMode.ScaleAspectFit
+            libButton.setImage(libImage, forState: .Normal)
+            libButton.addTarget(self, action: #selector(ARViewController.handleMySwipeRightGesture(_:)), forControlEvents: .TouchUpInside)
+            self.view.addSubview(libButton)
         }
     
     }
@@ -195,8 +195,11 @@ extension ARViewController: ChangeArtTableViewControllerDelegate {
             }
             self.menuView.upvote.enabled = true
             self.menuView.downvote.enabled = true
+            let alert = UIAlertController(title: "Art is now on display!", message: "Point your camera at the EmblemAR logo to see it in action!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Sweet!", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "Look at that!", message: "No art has been posted here yet! Looks like you beat everyone to the chase. Add art to this location to see it live!", preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Look at that!", message: "No art has been posted here yet! Looks like you beat everyone to the chase. Add art to this location through your library, then point your phone at the EmblemAR logo to see it live!", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "Sweet!", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
             self.menuView.upvote.enabled = false

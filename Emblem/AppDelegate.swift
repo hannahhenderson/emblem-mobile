@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         
-        
         if let devServer = NSProcessInfo.processInfo().environment["DEV_SERVER"] as String? {
             Store.serverLocation = devServer
         } else {

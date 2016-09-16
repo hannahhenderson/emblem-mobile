@@ -55,8 +55,13 @@ class MapViewController: UIViewController {
 
     }
     
+//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+//        return UIStatusBarStyle.
+//    }
+    
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     override func viewDidLoad() {
