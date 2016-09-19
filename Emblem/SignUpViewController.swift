@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  SignUpViewController.swift
 //  Emblem
 //
 //  Created by Dane Jordan on 9/19/16.
@@ -7,33 +7,27 @@
 //
 
 import UIKit
-import FBSDKLoginKit
-import FBSDKCoreKit
-import SwiftyJSON
-    
 
-class LoginViewController: UIViewController {
-
+class SignUpViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
-    @IBOutlet weak var loginButton: UIButton!
-    
-    @IBAction func loginButtonPressed(sender: AnyObject) {
-        let email = emailTextField.text
-        let hashedPassword = passwordTextField.text!.sha256()
-        print(hashedPassword)
+    @IBOutlet weak var reenterPasswordTextField: UITextField!
+    @IBOutlet weak var signupButton: UIButton!
+
+    @IBAction func signupButtonPressed(sender: AnyObject) {
     }
     
-    func sha256(data: NSData) -> NSData {
-        
-
+    func isValidEmail(email:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(email)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginButton.layer.cornerRadius = loginButton.bounds.height / 2
+        signupButton.layer.cornerRadius = signupButton.bounds.height / 2
         passwordTextField.secureTextEntry = true
+        reenterPasswordTextField.secureTextEntry = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,14 +46,4 @@ class LoginViewController: UIViewController {
     }
     */
 
-}
-
-extension String {
-    func sha256() -> String {
-        let data = self.dataUsingEncoding(NSUTF8StringEncoding)!
-        var digest = [UInt8](count: Int(CC_SHA256_DIGEST_LENGTH), repeatedValue: 0)
-        CC_SHA256(data.bytes, CC_LONG(data.length), &digest)
-        let hexBytes = digest.map {String(format: "%02hhx", $0) }
-        return hexBytes.joinWithSeparator("")
-    }
 }
