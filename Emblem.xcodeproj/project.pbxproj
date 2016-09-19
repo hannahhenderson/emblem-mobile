@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		351F47EC1D5B9FAD0093578B /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351F47EB1D5B9FAD0093578B /* HTTPRequest.swift */; };
+		353EA9DB1D905C72002D3710 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353EA9DA1D905C72002D3710 /* LoginViewController.swift */; };
+		353EA9DD1D905C90002D3710 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353EA9DC1D905C90002D3710 /* SignUpViewController.swift */; };
 		3569BC491D6630990036F190 /* LibraryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569BC481D6630990036F190 /* LibraryTableViewController.swift */; };
 		357FAB251D6F775B002F74D2 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 357FAB111D6F7701002F74D2 /* OpenSans-Bold.ttf */; };
 		357FAB271D6F784D002F74D2 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 357FAB121D6F7701002F74D2 /* OpenSans-BoldItalic.ttf */; };
@@ -26,7 +28,7 @@
 		35A87DED1D52B998004E739E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A87DEB1D52B998004E739E /* LaunchScreen.storyboard */; };
 		35A87DF81D52B998004E739E /* EmblemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A87DF71D52B998004E739E /* EmblemTests.swift */; };
 		35A87E031D52B998004E739E /* EmblemUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A87E021D52B998004E739E /* EmblemUITests.swift */; };
-		35A87E111D52BA28004E739E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A87E101D52BA28004E739E /* LoginViewController.swift */; };
+		35A87E111D52BA28004E739E /* FBLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A87E101D52BA28004E739E /* FBLoginViewController.swift */; };
 		35BD88A61D597F3500A409D6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BD88A51D597F3500A409D6 /* MapViewController.swift */; };
 		35DB9D421D66A8E100E8AAF0 /* UnwindFromRightSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DB9D411D66A8E100E8AAF0 /* UnwindFromRightSegue.swift */; };
 		35DB9D441D66A9A400E8AAF0 /* LeftToRightSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DB9D431D66A9A400E8AAF0 /* LeftToRightSegue.swift */; };
@@ -86,6 +88,8 @@
 
 /* Begin PBXFileReference section */
 		351F47EB1D5B9FAD0093578B /* HTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
+		353EA9DA1D905C72002D3710 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		353EA9DC1D905C90002D3710 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3569BC481D6630990036F190 /* LibraryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTableViewController.swift; sourceTree = "<group>"; };
 		357FAB111D6F7701002F74D2 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		357FAB121D6F7701002F74D2 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -110,7 +114,7 @@
 		35A87DFE1D52B998004E739E /* EmblemUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmblemUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		35A87E021D52B998004E739E /* EmblemUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmblemUITests.swift; sourceTree = "<group>"; };
 		35A87E041D52B998004E739E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		35A87E101D52BA28004E739E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		35A87E101D52BA28004E739E /* FBLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginViewController.swift; sourceTree = "<group>"; };
 		35BD88A51D597F3500A409D6 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		35DB9D411D66A8E100E8AAF0 /* UnwindFromRightSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnwindFromRightSegue.swift; sourceTree = "<group>"; };
 		35DB9D431D66A9A400E8AAF0 /* LeftToRightSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftToRightSegue.swift; sourceTree = "<group>"; };
@@ -218,6 +222,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		353EA9D91D905C27002D3710 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				35A87E101D52BA28004E739E /* FBLoginViewController.swift */,
+				353EA9DA1D905C72002D3710 /* LoginViewController.swift */,
+				353EA9DC1D905C90002D3710 /* SignUpViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		35A87DD61D52B997004E739E = {
 			isa = PBXGroup;
 			children = (
@@ -291,7 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				71291CDB1D64D1860092C4A9 /* ARView */,
-				35A87E101D52BA28004E739E /* LoginViewController.swift */,
+				353EA9D91D905C27002D3710 /* Login */,
 				35BD88A51D597F3500A409D6 /* MapViewController.swift */,
 				35E22B941D5EBD68004C6201 /* ChangeArtTableViewController.swift */,
 				3569BC481D6630990036F190 /* LibraryTableViewController.swift */,
@@ -652,6 +666,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				353EA9DD1D905C90002D3710 /* SignUpViewController.swift in Sources */,
+				353EA9DB1D905C72002D3710 /* LoginViewController.swift in Sources */,
 				35DB9D4B1D67CE3900E8AAF0 /* Store.swift in Sources */,
 				717FFC9B1D6931D600DABC2A /* ARMenuView.swift in Sources */,
 				7123FF391D700B88006DC386 /* ResourceHandler.swift in Sources */,
@@ -661,7 +677,7 @@
 				35E22B9A1D5ECA85004C6201 /* ArtTableViewCell.swift in Sources */,
 				3569BC491D6630990036F190 /* LibraryTableViewController.swift in Sources */,
 				35DB9D461D66B4A900E8AAF0 /* RightToLeftSegue.swift in Sources */,
-				35A87E111D52BA28004E739E /* LoginViewController.swift in Sources */,
+				35A87E111D52BA28004E739E /* FBLoginViewController.swift in Sources */,
 				71291CE71D64DF630092C4A9 /* ARManager.mm in Sources */,
 				71291CF61D651F620092C4A9 /* ARSceneSource.swift in Sources */,
 				351F47EC1D5B9FAD0093578B /* HTTPRequest.swift in Sources */,
