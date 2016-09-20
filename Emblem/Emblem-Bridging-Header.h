@@ -11,5 +11,6 @@
 
 #import <GoogleMaps/GoogleMaps.h>
 #import "ARManager.h"
+#import <CommonCrypto/CommonCrypto.h>
 
 #endif /* Emblem_Bridging_Header_h */

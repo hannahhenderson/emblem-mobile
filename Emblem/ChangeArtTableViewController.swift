@@ -14,7 +14,7 @@ protocol ChangeArtTableViewControllerDelegate {
     func receiveArt(art: NSObject!, artType: ArtType!, artPlaceId: String!);
 }
 
-class ChangeArtTableViewController: UITableViewController, FBSDKAppInviteDialogDelegate {
+class ChangeArtTableViewController: UITableViewController {
     
     var artData = [Dictionary<String,AnyObject>]()
     var sector:String!
@@ -69,34 +69,16 @@ class ChangeArtTableViewController: UITableViewController, FBSDKAppInviteDialogD
     }
     
     func shareToFB() {
-        let alert = UIAlertController(title: "What would you like to do?", message: "Select one of the following options.", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Share an image on Facebook", style: .Default, handler: { (action) in
-            let share = UIAlertController(title: "Share image on Facebook?", message: "Would you like to share an image found here on your Facebook? If so, after clicking yes, select the image you wish to share.", preferredStyle: .Alert)
-            share.addAction(UIAlertAction(title: "Yes!", style: .Default, handler: {(UIAlertAction) -> Void in
-                self.willSelectForARView = false
-            }))
-            share.addAction(UIAlertAction(title: "Nevermind", style: .Cancel, handler: nil))
-            self.presentViewController(share, animated: true, completion: nil)
+        
+        let share = UIAlertController(title: "Share image on Facebook?", message: "Would you like to share an image found here on your Facebook? If so, after clicking yes, select the image you wish to share.", preferredStyle: .Alert)
+        share.addAction(UIAlertAction(title: "Yes!", style: .Default, handler: {(UIAlertAction) -> Void in
+            self.willSelectForARView = false
         }))
-        alert.addAction(UIAlertAction(title: "Invite friends to EmblemAR", style: .Default, handler: { (action) in
-            let fbInviteContent = FBSDKAppInviteContent()
-            //TODO: Replace with app store listing
-            fbInviteContent.appLinkURL = NSURL(string: "http://www.emblemar.com")
-            fbInviteContent.appInvitePreviewImageURL = NSURL(string: "https://itunes.apple.com/us/app/facebook/id284882215?mt=8&ign-mpt=uo%3D2")
-            FBSDKAppInviteDialog.showFromViewController(self, withContent: fbInviteContent, delegate: self)
-        }))
-        alert.addAction(UIAlertAction(title: "Neither", style: .Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        share.addAction(UIAlertAction(title: "Nevermind", style: .Cancel, handler: nil))
+        self.presentViewController(share, animated: true, completion: nil)
         
     }
     
-    func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didCompleteWithResults results: [NSObject : AnyObject]!) {
-        print("Invite Complete")
-    }
-    
-    func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didFailWithError error: NSError!) {
-        print("App Invite Failed with error: \(error.localizedDescription)")
-    }
     func backPressed() {
         self.performSegueWithIdentifier(ARViewController.getUnwindSegueFromChangeArtView(), sender: nil)
     }

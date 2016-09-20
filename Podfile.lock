@@ -29,6 +29,7 @@ PODS:
   - GoogleMaps/Base (2.0.1)
   - GoogleMaps/Maps (2.0.1):
     - GoogleMaps/Base (= 2.0.1)
+  - IQKeyboardManagerSwift (4.0.5)
   - Socket.IO-Client-Swift (6.1.6)
   - SSZipArchive (1.5)
   - SwiftyJSON (2.3.2)
@@ -38,6 +39,7 @@ DEPENDENCIES:
   - FacebookLogin
   - FacebookShare
   - GoogleMaps
+  - IQKeyboardManagerSwift (= 4.0.5)
   - Socket.IO-Client-Swift (~> 6.1.6)
   - SSZipArchive
   - SwiftyJSON
@@ -51,10 +53,11 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 073f79b3b2e762fc6f54a283fe15f45372d59f5f
   FBSDKShareKit: 11cbb5a4d7b5fda8143cc95b76188147e6725736
   GoogleMaps: f09da64fc987c1aa29394567c3cab5a3df83c402
+  IQKeyboardManagerSwift: 41fd3a45a2cdb2a0e031af697708a95b865068a1
   Socket.IO-Client-Swift: 5eddbfafd3c035a77d365d5b58da93cc488af11f
   SSZipArchive: 29daace2bccb90a47de2837744da397728ff9207
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 9d631d8c2de92de164652373113faa3380cc47c1
+PODFILE CHECKSUM: 0c13f3aaab199a0a2a443eeda285a40dba9ef99d
 
 COCOAPODS: 1.0.1

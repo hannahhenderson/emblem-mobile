@@ -210,7 +210,7 @@ extension ARViewController: ChangeArtTableViewControllerDelegate {
     func upvoteArt() {
         let url = NSURL(string: "\(Store.serverLocation)artplace/\(self.artPlaceId!)/vote")!
         
-        HTTPRequest.post(["vote": 1], dataType: "application/json", url: url, postCompleted: {(succeeded, msg) in
+        HTTPRequest.post(["vote": 1], dataType: .JSON, url: url, postCompleted: {(succeeded, msg) in
             if succeeded {
                 self.menuView.upvoted()
                 self.menuView.upvote.highlighted = true
@@ -224,7 +224,7 @@ extension ARViewController: ChangeArtTableViewControllerDelegate {
     func downvoteArt() {
         let url = NSURL(string: "\(Store.serverLocation)artplace/\(self.artPlaceId!)/vote")
         
-        HTTPRequest.post(["vote": -1], dataType: "application/json", url: url!, postCompleted: {(succeeded, msg) in
+        HTTPRequest.post(["vote": -1], dataType: .JSON, url: url!, postCompleted: {(succeeded, msg) in
             if succeeded {
                 self.menuView.downvoted()
                 self.menuView.downvote.highlighted = true

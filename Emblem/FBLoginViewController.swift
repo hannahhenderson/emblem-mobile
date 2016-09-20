@@ -24,11 +24,20 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, MapView
     var blurEffectView2:UIVisualEffectView!
     
     @IBOutlet weak var fbLoginButton: FBSDKLoginButton!
+    @IBOutlet weak var noFacebookButton: UIButton!
     @IBOutlet weak var firstFadeView: UIView!
 
+    @IBAction func noFBPressed(sender: AnyObject) {
+        self.performSegueWithIdentifier(LoginViewController.getEntrySegueIdentifierFromFBLoginVC(), sender: nil)
+    }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+//        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.navigationBar.barTintColor = .clearColor()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
+        
         UIView.animateWithDuration(1, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
             self.blurEffectView1.effect = nil
             }) { (true) in
@@ -36,6 +45,7 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, MapView
                 
             UIView.animateWithDuration(1, delay: 0.5, options: UIViewAnimationOptions.CurveEaseIn, animations: {
                     self.fbLoginButton.alpha = 1
+                    self.noFacebookButton.alpha = 1
                 }, completion: {(true) -> Void in
                     self.blurEffectView1.removeFromSuperview()
                 })
@@ -55,12 +65,11 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, MapView
         }
         
         fbLoginButton.alpha = 0
+        noFacebookButton.alpha = 0
         
         configureFacebook()
         
         if Store.accessToken == "" && FBSDKAccessToken.currentAccessToken() != nil {
-            
-            
             
                 let url = NSURL(string: "\(Store.serverLocation)auth/facebook/token?access_token=\(FBSDKAccessToken.currentAccessToken().tokenString)")!
             
@@ -70,20 +79,21 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, MapView
                         print("Returned User Token: \(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)")
                         Store.accessToken = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
                         dispatch_async(dispatch_get_main_queue()) {
-                            self.performSegueWithIdentifier(MapViewController.getEntrySegueFromLogin(), sender: nil)
+                            self.performSegueWithIdentifier(MapViewController.getEntrySegueIdentifierFromFBLogin(), sender: nil)
                         }
                     } else {
-                        print("FB Authentication Falure: \(response)")
+                        print("FB Authentication Failure: \(response)")
                     }
                 
                 })
-            }
+        } else if Store.accessToken != "" {
+            print(Store.accessToken)
+        }
         
     }
 
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!){
-        
         
         FBSDKGraphRequest.init(graphPath: "me", parameters: ["fields":"first_name, email, last_name, picture.type(large)"]).startWithCompletionHandler { (connection, result, error) -> Void in
             
@@ -99,7 +109,7 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, MapView
                         if response.statusCode == 200 {
                             Store.accessToken = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
                             dispatch_async(dispatch_get_main_queue()) {
-                                self.performSegueWithIdentifier(MapViewController.getEntrySegueFromLogin(), sender: nil)
+                                self.performSegueWithIdentifier(MapViewController.getEntrySegueIdentifierFromFBLogin(), sender: nil)
                                 
                             }
                         } else {

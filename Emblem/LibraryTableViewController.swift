@@ -152,7 +152,7 @@ class LibraryTableViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: "Let's do it!", style: .Default, handler: {(action) -> Void in
                 let artID = self.artData[indexPath.row]["id"] as! Int
                 let url = NSURL(string: Store.serverLocation + "art/\(artID)/place")!
-                HTTPRequest.post(["lat": Store.lat, "long": Store.long], dataType: "application/json", url: url) { (succeeded, msg) in
+                HTTPRequest.post(["lat": Store.lat, "long": Store.long], dataType: .JSON, url: url) { (succeeded, msg) in
                     if succeeded {
                         self.artPlaceId = msg["id"].intValue
                         dispatch_async(dispatch_get_main_queue(), {() -> Void in
@@ -254,7 +254,7 @@ extension LibraryTableViewController: UIImagePickerControllerDelegate, UINavigat
         let loadingScreen = Utils.genLoadingScreen(self.view.bounds.width, height: UIScreen.mainScreen().bounds.height, loadingText: "Pulsating quasi-data to the cloud....")
 
         self.view.addSubview(loadingScreen)
-        HTTPRequest.post(["image": imageData, "imageLength": imageData.length], dataType: "application/octet-stream", url: url) { (succeeded, msg) in
+        HTTPRequest.post(["image": imageData, "imageLength": imageData.length], dataType: .OCTETSTREAM, url: url) { (succeeded, msg) in
             if succeeded {
                 print(msg)
                 dispatch_async(dispatch_get_main_queue(), {() -> Void in
