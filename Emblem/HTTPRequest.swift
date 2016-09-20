@@ -10,8 +10,13 @@ import Foundation
 import FBSDKCoreKit
 import SwiftyJSON
 
-class HTTPRequest {
+enum DataType {
+    case JSON
+    case OCTETSTREAM
+}
 
+
+class HTTPRequest {
     
     class func get(url:NSURL, getCompleted: (response: NSHTTPURLResponse, data: NSData) -> ()) {
         var url = url
@@ -49,7 +54,7 @@ class HTTPRequest {
         
     }
     
-    class func post(params: Dictionary<String, AnyObject>, dataType:String, url: NSURL, postCompleted: (succeeded: Bool, msg: JSON) -> ()){
+    class func post(params: Dictionary<String, AnyObject>, dataType: DataType, url: NSURL, postCompleted: (succeeded: Bool, msg: JSON) -> ()){
         var url = url
         if (Store.accessToken != "") {
             if let newUrl = NSURL(string: url.absoluteString + "?access_token=\(Store.accessToken)") {
@@ -61,8 +66,15 @@ class HTTPRequest {
         
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
-        request.addValue(dataType, forHTTPHeaderField: "Content-Type")
-        request.addValue(dataType, forHTTPHeaderField: "Accept")
+        var dataTypeString = ""
+        switch dataType {
+        case .JSON:
+            dataTypeString = "application/json"
+        case .OCTETSTREAM:
+            dataTypeString = "application/octet-stream"
+        }
+        request.addValue(dataTypeString, forHTTPHeaderField: "Content-Type")
+        request.addValue(dataTypeString, forHTTPHeaderField: "Accept")
         request.addValue("close", forHTTPHeaderField: "Connection")
         
         let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -70,14 +82,14 @@ class HTTPRequest {
         sessionConfig.timeoutIntervalForResource = 180.0
         let session = NSURLSession(configuration: sessionConfig)
         
-        if dataType == "application/json" {
+        if dataType == .JSON {
             do {
                 let json = try NSJSONSerialization.dataWithJSONObject(params, options: [])
                 request.HTTPBody = json
             } catch {
                 print("HTTPBody set error: \(error)")
             }
-        } else if dataType == "application/octet-stream" {
+        } else if dataType == .OCTETSTREAM {
             request.HTTPBody = params["image"] as? NSData
             request.addValue("png", forHTTPHeaderField: "File-Type")
             let imageLength = String(params["imageLength"] as! Int)
@@ -91,15 +103,23 @@ class HTTPRequest {
                 print(error)
                 return
             }
-            print("POST URL: \(response?.URL) \r\n POST Response Status Code: \((response as! NSHTTPURLResponse).statusCode)")
-            if let resString = NSString(data: data!, encoding: NSUTF8StringEncoding) {
-                print("Post Response Body: \(resString)")
-            }
+            let statusCode = (response as! NSHTTPURLResponse).statusCode
+            print("POST URL: \(response!.URL) \nPOST Response Status Code: \(statusCode)")
+            
+            let resString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+            print("Post Response Body: \(resString)")
+            
             
             let json = JSON(data: data!)
             print("POST RESPONSE: \(json)")
-            if data != nil {
-                postCompleted(succeeded: true, msg: json)
+            if statusCode == 200 {
+                if resString != "" {
+                    postCompleted(succeeded: true, msg: JSON(["response":resString]))
+                } else {
+                    postCompleted(succeeded: true, msg: json)
+                }
+            } else {
+                postCompleted(succeeded: false, msg: JSON(["response":resString]))
             }
         }
         task.resume()

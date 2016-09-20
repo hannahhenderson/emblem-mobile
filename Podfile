@@ -11,6 +11,7 @@ target 'Emblem' do
     pod 'FacebookShare'
     pod 'SSZipArchive'
     pod 'Socket.IO-Client-Swift', '~> 6.1.6'
+    pod 'IQKeyboardManagerSwift', '4.0.5'
 end
 
 use_frameworks!

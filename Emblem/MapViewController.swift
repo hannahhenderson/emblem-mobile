@@ -22,6 +22,7 @@ class MapViewController: UIViewController {
     var placeLong:Double = 0
     var didInitializeCamera = false
     var MILEINDEGREES = 0.0144
+    var isFromSignup:Bool?
     
     var delegate:MapViewControllerDelegate?
     
@@ -49,18 +50,31 @@ class MapViewController: UIViewController {
             })
         } else {
             let alert = UIAlertController(title: "Gee wilikers", message: "GPS is mid-convo with your device, try again shortly", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "Got it.", style: .Default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Got it", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
 
     }
     
+//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+//        return UIStatusBarStyle.
+//    }
+    
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let fromSignup = isFromSignup {
+            if(fromSignup) {
+                let alert = UIAlertController(title: "Signup Success", message: "Welcome to EmblemAR!", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Thanks!", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        }
         
         initLocationServices()
 
@@ -85,6 +99,14 @@ class MapViewController: UIViewController {
     
     class func getEntrySegueFromLogin() -> String {
         return "LoginToMapViewSegue"
+    }
+    
+    class func getEntrySegueIdentifierFromFBLogin() -> String {
+        return "fbLoginToMapViewSegue"
+    }
+    
+    class func getEntrySegueIdentifierFromSignup() -> String {
+        return "signupToMapViewSegue"
     }
     
     func initLocationServices() {
